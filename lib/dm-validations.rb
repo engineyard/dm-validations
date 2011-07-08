@@ -78,7 +78,7 @@ module DataMapper
 
     chainable do
       def save_self(*)
-        return false unless !dirty_self? || validation_context_stack.empty? || valid?(current_validation_context)
+        return false unless validation_context_stack.empty? || valid?(current_validation_context)
         super
       end
     end
