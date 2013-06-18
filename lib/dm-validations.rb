@@ -47,11 +47,11 @@ module DataMapper
     end
 
     # @api private
-    def save_self(*)
-      if Validations::Context.any? && !valid?(model.validators.current_context)
+    def save_self(execute_hooks = true)
+      if Validations::Context.any? && execute_hooks && !valid?(model.validators.current_context)
         false
       else
-        super
+        super(execute_hooks)
       end
     end
 
